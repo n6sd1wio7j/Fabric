@@ -17,6 +17,9 @@ import (
 //   - See ./patterns/local/ for my personal pattern additions
 //   - Fork maintained at: github.com/myusername/fabric
 //   - Upstream: github.com/danielmiessler/fabric
+//
+// TODO: explore adding a --dry-run flag to preview pattern substitutions
+//       without sending requests to the model
 func main() {
 	// Initialize the Fabric registry which manages all available patterns,
 	// models, and integrations.
