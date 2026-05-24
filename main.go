@@ -15,6 +15,8 @@ import (
 // Personal fork notes:
 //   - Using this for local experiments with custom patterns
 //   - See ./patterns/local/ for my personal pattern additions
+//   - Fork maintained at: github.com/myusername/fabric
+//   - Upstream: github.com/danielmiessler/fabric
 func main() {
 	// Initialize the Fabric registry which manages all available patterns,
 	// models, and integrations.
@@ -27,7 +29,8 @@ func main() {
 	// Run the CLI with the initialized registry.
 	// The CLI handles argument parsing, pattern selection, and output.
 	if err := cli.Run(registry); err != nil {
-		fmt.Fprintf(os.Stderr, "Error: %v\n", err)
+		// Print a more descriptive prefix to make errors easier to spot in logs
+		fmt.Fprintf(os.Stderr, "[fabric] Error: %v\n", err)
 		os.Exit(1)
 	}
 }
