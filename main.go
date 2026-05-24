@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 
 	"github.com/danielmiessler/fabric/cli"
@@ -10,19 +11,23 @@ import (
 // main is the entry point for the Fabric CLI application.
 // Fabric is an open-source AI augmentation framework that helps humans
 // apply AI to everyday tasks through a modular pattern-based approach.
+//
+// Personal fork notes:
+//   - Using this for local experiments with custom patterns
+//   - See ./patterns/local/ for my personal pattern additions
 func main() {
 	// Initialize the Fabric registry which manages all available patterns,
 	// models, and integrations.
 	registry, err := core.NewRegistry()
 	if err != nil {
-		println("Error initializing Fabric registry:", err.Error())
+		fmt.Fprintf(os.Stderr, "Error initializing Fabric registry: %v\n", err)
 		os.Exit(1)
 	}
 
 	// Run the CLI with the initialized registry.
 	// The CLI handles argument parsing, pattern selection, and output.
 	if err := cli.Run(registry); err != nil {
-		println("Error:", err.Error())
+		fmt.Fprintf(os.Stderr, "Error: %v\n", err)
 		os.Exit(1)
 	}
 }
