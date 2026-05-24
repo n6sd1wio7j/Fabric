@@ -20,6 +20,7 @@ import (
 //
 // TODO: explore adding a --dry-run flag to preview pattern substitutions
 //       without sending requests to the model
+// TODO: look into adding shell completion support (bash/zsh)
 func main() {
 	// Initialize the Fabric registry which manages all available patterns,
 	// models, and integrations.
@@ -32,8 +33,9 @@ func main() {
 	// Run the CLI with the initialized registry.
 	// The CLI handles argument parsing, pattern selection, and output.
 	if err := cli.Run(registry); err != nil {
-		// Print a more descriptive prefix to make errors easier to spot in logs
+		// Print a more descriptive prefix to make errors easier to spot in logs.
+		// Exit code 2 used here to distinguish CLI/usage errors from init errors (1).
 		fmt.Fprintf(os.Stderr, "[fabric] Error: %v\n", err)
-		os.Exit(1)
+		os.Exit(2)
 	}
 }
