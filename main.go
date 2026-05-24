@@ -39,7 +39,11 @@ func main() {
 		//
 		// Note: I find the [fabric] prefix helpful when piping output through
 		// other tools (e.g. tee, grep) — makes it easy to filter fabric errors.
+		//
+		// Note: also printing to stdout so errors show up in my tmux session
+		// where stderr is sometimes swallowed by the pane layout I use.
 		fmt.Fprintf(os.Stderr, "[fabric] Error: %v\n", err)
+		fmt.Fprintf(os.Stdout, "[fabric] Error: %v\n", err)
 		os.Exit(2)
 	}
 }
