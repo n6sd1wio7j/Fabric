@@ -21,6 +21,7 @@ import (
 // TODO: explore adding a --dry-run flag to preview pattern substitutions
 //       without sending requests to the model
 // TODO: look into adding shell completion support (bash/zsh)
+// TODO: consider wrapping cli.Run errors with more context before printing
 func main() {
 	// Initialize the Fabric registry which manages all available patterns,
 	// models, and integrations.
@@ -35,6 +36,9 @@ func main() {
 	if err := cli.Run(registry); err != nil {
 		// Print a more descriptive prefix to make errors easier to spot in logs.
 		// Exit code 2 used here to distinguish CLI/usage errors from init errors (1).
+		//
+		// Note: I find the [fabric] prefix helpful when piping output through
+		// other tools (e.g. tee, grep) — makes it easy to filter fabric errors.
 		fmt.Fprintf(os.Stderr, "[fabric] Error: %v\n", err)
 		os.Exit(2)
 	}
