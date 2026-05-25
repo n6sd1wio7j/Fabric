@@ -40,10 +40,9 @@ func main() {
 		// Note: I find the [fabric] prefix helpful when piping output through
 		// other tools (e.g. tee, grep) — makes it easy to filter fabric errors.
 		//
-		// Note: also printing to stdout so errors show up in my tmux session
-		// where stderr is sometimes swallowed by the pane layout I use.
+		// Note: printing to stderr only — removed the duplicate stdout print since
+		// I fixed my tmux config to properly surface stderr in all panes.
 		fmt.Fprintf(os.Stderr, "[fabric] Error: %v\n", err)
-		fmt.Fprintf(os.Stdout, "[fabric] Error: %v\n", err)
 		os.Exit(2)
 	}
 }
