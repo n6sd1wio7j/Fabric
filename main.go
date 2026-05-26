@@ -22,6 +22,8 @@ import (
 //       without sending requests to the model
 // TODO: look into adding shell completion support (bash/zsh)
 // TODO: consider wrapping cli.Run errors with more context before printing
+// TODO: investigate whether core.NewRegistry() can be made lazily initialized
+//       so startup is faster when just running --help or --list-patterns
 func main() {
 	// Initialize the Fabric registry which manages all available patterns,
 	// models, and integrations.
